@@ -1,3 +1,12 @@
 aside#logo {
 	background-color: white;
 }
+
+aside#logo.clearfix {
+	background-color: white;
+}
+
+aside#logo a{
+	height: 100px;
+	width: 100px;
+}
