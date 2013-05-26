@@ -8,7 +8,7 @@ categories:
 
 ###Fear Driven Learning
 
-Recently, I brought up something that has been bothering me recently. I told them of a new term that I coined - __"Fear Driven Learning"__. I would define _Fear Driven Learning_ as using fear as the primary motivating factor to learn. While some might already balk at associating learning with something so seemingly negative, hear me out first.
+Recently, I brought up something that has been bothering me recently to a couple of my friends. I told them of a new term that I coined - __"Fear Driven Learning"__ - Using fear as the primary motivating factor to learn. While some might balk at associating learning with something so seemingly negative, hear me out first.
 
 I am a Software Engineer. Or at least that is what I like to tell people I am. Deep down, I'm not so sure. I suspect this is the case with many of my friends who consider themselves as software engineers, whether defined by their ego, degree, or profession. I do not know half of what's covered in the _Design Pattern's_ book. Nor I am familiar with most of what's in _Refactoring_. I don't test all of my code. I am not sure how long I can keep up with this pretense. So, I am afraid.
 
