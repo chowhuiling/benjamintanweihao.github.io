@@ -14,7 +14,7 @@ I am a Software Engineer. Or at least that is what I like to tell people I am. D
 
 I am a Computer Science graduate. Or at least that is what my degree scroll says. Deep down, I'm not so sure. Sure, I consider myself a fairly good programmer. And I probably could still know my way around the Prolog compiler I wrote many moons ago. I still struggle with understanding concurrency, never implemented a bloom filter, and would probably struggle with any interview questions that would involve slightly more than trivial algorithms. So, again, I am afraid.
 
-I have a great job that I look forward to everyday. I am privileged to be able to have the freedom to solve problems in anyway I deem fit. But I should not get to comfortable. Great things don't last, and no one is indispensable. That is something I am afraid of.
+I have a great job that I look forward to everyday. I am privileged to be able to have the freedom to solve problems in anyway I deem fit. But I should not get too comfortable. Great things don't last, and no one is indispensable. That is something I am afraid of.
 
 ###Exploiting Fear
 
