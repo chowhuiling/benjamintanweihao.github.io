@@ -2,6 +2,7 @@
 layout: post
 title: "My Little Experiment"
 date: 2013-05-27 01:14
+sharing: true
 comments: true
 categories: 
 ---
