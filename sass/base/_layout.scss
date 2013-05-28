@@ -12,6 +12,20 @@ body {
   line-height: 1.4;
 }
 
+table {
+	min-width: 800px;
+}
+
+pre {
+	max-width: 800px;
+}
+
+img.book {
+	height: 150px;
+	padding: 15px 15px 15px 0px;
+
+}
+
 #sidebar {
   width: 27%;
   padding-left: 1.5%;
