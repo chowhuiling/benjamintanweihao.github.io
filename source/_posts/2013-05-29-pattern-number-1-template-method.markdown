@@ -2,7 +2,6 @@
 layout: post
 title: "Pattern #1: Template Method"
 date: 2013-05-29 10:04
-sharing: true
 comments: true
 categories: "Design Patterns"
 ---
