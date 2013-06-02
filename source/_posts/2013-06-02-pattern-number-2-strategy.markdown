@@ -6,7 +6,10 @@ comments: true
 categories: ["Design Pattens", "Strategy"]
 ---
 
-__Strategy__ is simple, yet powerful, design pattern to have in your toolbox. Here's the GoF definition:
+{% img center /images/delegate.png 600 %}
+(Credits: http://www.indigoexcel.com/)
+
+__Strategy__ is simple, yet powerful, design pattern to have in your toolbox. It's main power comes from its clever use of delegation. Here's the GoF definition:
 
 > Define a family of algorithms, encapsulate each one, and make them interchangeable. 
 > Strategy lets the algorithm vary independently from client that use it.
