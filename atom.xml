@@ -4,7 +4,7 @@
   <title><![CDATA[benjamin.tan]]></title>
   <link href="http://benjamintanweihao.github.io/atom.xml" rel="self"/>
   <link href="http://benjamintanweihao.github.io/"/>
-  <updated>2013-06-02T16:37:35+08:00</updated>
+  <updated>2013-06-02T16:57:57+08:00</updated>
   <id>http://benjamintanweihao.github.io/</id>
   <author>
     <name><![CDATA[Benjamin Tan]]></name>
@@ -18,7 +18,10 @@
     <link href="http://benjamintanweihao.github.io/blog/2013/06/02/pattern-number-2-strategy/"/>
     <updated>2013-06-02T13:48:00+08:00</updated>
     <id>http://benjamintanweihao.github.io/blog/2013/06/02/pattern-number-2-strategy</id>
-    <content type="html"><![CDATA[<p><strong>Strategy</strong> is simple, yet powerful, design pattern to have in your toolbox. Here&rsquo;s the GoF definition:</p>
+    <content type="html"><![CDATA[<p><img class="center" src="http://benjamintanweihao.github.io/images/delegate.png" width="600">
+(Credits: <a href="http://www.indigoexcel.com/">http://www.indigoexcel.com/</a>)</p>
+
+<p><strong>Strategy</strong> is simple, yet powerful, design pattern to have in your toolbox. It&rsquo;s main power comes from its clever use of delegation. Here&rsquo;s the GoF definition:</p>
 
 <blockquote><p>Define a family of algorithms, encapsulate each one, and make them interchangeable.
 Strategy lets the algorithm vary independently from client that use it.</p></blockquote>
