@@ -3,7 +3,7 @@ layout: post
 title: "Pattern #2: Strategy"
 date: 2013-06-02 13:48
 comments: true
-categories: 
+categories: ["Design Pattens, "Strategy"]
 ---
 
 __Strategy__ is simple, yet powerful, design pattern to have in your toolbox. Here's the GoF definition:

@@ -3,7 +3,7 @@ layout: post
 title: "Pattern #1: Template Method"
 date: 2013-05-29 10:04
 comments: true
-categories: "Design Patterns"
+categories: ["Design Patterns", "Template Method"]
 ---
 
 This is one of the simplest design patterns. The GoF book has the most concise description of the __Template Method__:
