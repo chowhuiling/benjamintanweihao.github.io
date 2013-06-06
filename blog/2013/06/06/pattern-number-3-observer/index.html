@@ -1,0 +1,380 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Pattern #3 - Observer - benjamin.tan</title>
+  <meta name="author" content="Benjamin Tan">
+
+  
+  <meta name="description" content="Tweet Pattern #3 - Observer Jun 6th, 2013 | Comments Today, we&rsquo;ll look at one of the most useful patterns &ndash; The Observer. This is what &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://benjamintanweihao.github.io/blog/2013/06/06/pattern-number-3-observer/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="benjamin.tan" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-41273068-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body >
+  <header role="banner" id="sidebar">
+    <!-- Logo -->
+<aside id="logo" class="clearfix">
+  <div class="clearfix">
+    <a href="/">benjamin.tan</a>
+  </div>
+</aside>
+
+<ul id="menu">
+
+  <li class="title">
+    <h1 id="title"><a href="/">benjamin.tan</a></h1>
+  </li>
+
+
+  <li class="subtitle">
+    <h2 id="subtitle">learning & writings.</h2>
+  </li>
+
+  <li class="link">
+    <a href="/about/">about</a>
+  </li>
+  <li class="link">
+    <a href="/books/">my books</a>
+  </li>
+
+  <li class="link">
+    <a href="http://twitter.com/bentanweihao/">twitter</a>
+  </li>
+
+
+  <li class="link">
+    <a href="http://github.com/benjamintanweihao/">github</a>
+  </li>
+
+  <li class="link rss">
+    <a href="/atom.xml">rss feed</a>
+  </li>
+</ul>
+
+
+
+  </header>
+  <section id="main">
+    <article class="post">
+  <div class="sharing-box">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://benjamintanweihao.github.io" data-via="bentanweihao" data-counturl="http://benjamintanweihao.github.io" data-size="large">Tweet</a>
+  
+  
+	<div class="g-plusone" data-size="medium" data-href="http://benjamintanweihao.github.io"></div>
+  
+  
+	<div class="fb-like" data-send="true" data-width="450" data-show-faces="false" data-href="http://benjamintanweihao.github.io"></div>
+  
+</div>
+
+  
+  <header>
+    
+      <h2 class="entry-title">Pattern #3 - Observer</h2>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-06-06T22:58:00+08:00" pubdate data-updated="true">Jun 6<span>th</span>, 2013</time>
+        
+         | <a href="#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+<p>Today, we&rsquo;ll look at one of the most useful patterns &ndash; The <strong>Observer</strong>.</p>
+
+<p>This is what the GoF have to say about the Observer:</p>
+
+<blockquote><p>Define a one-to-many dependency between objects so that when one object changes state, all its dependents are notified and updated automatically.</p></blockquote>
+
+<p>We shall use the UML diagram to help us understand the pattern:</p>
+
+<p><img src="/images/observer_uml.png">
+(Credits: <a href="http://www.wikipedia.com/">http://www.wikipedia.com/</a>)</p>
+
+<h3>The Subject</h3>
+
+<p>We begin with the <strong>Subject</strong>. This is the object that we are interested in when it&rsquo;s state changes.</p>
+
+<p><strong>Subject</strong> has an <code>observerCollection</code> field. As it&rsquo;s name suggests, this is typically a list collection (Array, List, etc). This stores a collection of <strong>Observer</strong>s which we will take a look next.</p>
+
+<h3>The Observer</h3>
+
+<p>The parent <strong>Observer</strong> defines one method &ndash; <code>notify()</code>. Classes which inherit the <strong>Observer</strong> (<code>ConcreteObserverA</code>, <code>ConcreteObserverB</code>) are expected to implement <code>notify()</code>.</p>
+
+<h3>PUB/SUB</h3>
+
+<p>This pattern is also known as the Publisher/Subscriber, or PUB/SUB for short.</p>
+
+<p><img src="/images/pubsub.jpeg"></p>
+
+<p>Let&rsquo;s find out why:</p>
+
+<h3>Subscribing and Unsubscribing</h3>
+
+<p>If the <code>Subject</code> needs to inform certain <code>Observer</code>s, then it calls the <code>registerObserver(observer)</code>. Similarly, once it can choose to remove any <code>Observer</code> by calling <code>unregisterObserver(observer)</code>.</p>
+
+<h3>Publishing</h3>
+
+<p>Here&rsquo;s where the fun starts. Let&rsquo;s see some code that implements the UML diagram above:</p>
+
+<figure class='code'><figcaption><span>The Subject </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">class</span> <span class="nc">Subject</span>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">initialize</span>
+</span><span class='line'>    <span class="vi">@observers</span> <span class="o">=</span> <span class="o">[]</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">notify_observers</span>
+</span><span class='line'>    <span class="vi">@observers</span><span class="o">.</span><span class="n">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">observer</span><span class="o">|</span>
+</span><span class='line'>      <span class="n">observer</span><span class="o">.</span><span class="n">notify</span>
+</span><span class='line'>    <span class="k">end</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">register_observer</span><span class="p">(</span><span class="n">observer</span><span class="p">)</span>
+</span><span class='line'>    <span class="vi">@observers</span> <span class="o">&lt;&lt;</span> <span class="n">observer</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">unregister_observer</span><span class="p">(</span><span class="n">observer</span><span class="p">)</span>
+</span><span class='line'>    <span class="vi">@observers</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="n">observer</span><span class="p">)</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Then the Observer:</p>
+
+<figure class='code'><figcaption><span>The Observers </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">class</span> <span class="nc">ObserverOne</span>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">notify</span>
+</span><span class='line'>    <span class="nb">puts</span> <span class="s2">&quot;Observer 1 called.&quot;</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">class</span> <span class="nc">ObserverTwo</span>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">notify</span>
+</span><span class='line'>    <span class="nb">puts</span> <span class="s2">&quot;Observer 2 called.&quot;</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Then we add our observers:</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">subject</span> <span class="o">=</span> <span class="no">Subject</span><span class="o">.</span><span class="n">new</span>
+</span><span class='line'><span class="n">subject</span><span class="o">.</span><span class="n">register_observer</span><span class="p">(</span><span class="no">ObserverOne</span><span class="o">.</span><span class="n">new</span><span class="p">)</span>
+</span><span class='line'><span class="n">subject</span><span class="o">.</span><span class="n">register_observer</span><span class="p">(</span><span class="no">ObserverTwo</span><span class="o">.</span><span class="n">new</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Now, whenever <code>Subject</code>&rsquo;s state changes, it just has to call <code>notify_observers</code>:</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">class</span> <span class="nc">Subject</span>
+</span><span class='line'>  <span class="c1"># …  </span>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">change_variable</span>
+</span><span class='line'>    <span class="c1"># …</span>
+</span><span class='line'>    <span class="n">notify_observers</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>Key Takeaways</h3>
+
+<p>The Observer pattern great for reducing the coupling between different components when these components need to be informed about changes.</p>
+
+<p>By separating the <code>Subject</code> and the <code>Observer</code>, we have a clean separation of concerns.</p>
+
+<h3>Examples of Observer in use</h3>
+
+<p><a href="http://rubyonrails.org/">Ruby</a> has is very own <code>Observable</code> module, so there&rsquo;s really no need to implement one your own. See the <a href="http://www.ruby-doc.org/stdlib-2.0/libdoc/observer/rdoc/Observable.html">documentation</a>. Notice that the methods implemented are pretty similar.</p>
+
+<p><a href="http://rubyonrails.org/">Rails</a> makes use of observers heavily. Here&rsquo;s a typical example:</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">class</span> <span class="nc">User</span> <span class="o">&lt;</span> <span class="ss">ActiveRecord</span><span class="p">:</span><span class="ss">:Base</span>
+</span><span class='line'>  <span class="n">after_create</span> <span class="ss">:send_email</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">send_email</span>
+</span><span class='line'>    <span class="c1">#send a welcome email</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Thanks for reading!</p>
+
+<h3>References</h3>
+
+<p>Olsen, R. (2008) Design patterns in Ruby. Upper Saddle River, NJ: Addison-Wesley, p.95-110.</p>
+
+<p>Gamma, E. (1995) Design patterns. Reading, Mass.: Addison-Wesley, p.293-303.</p>
+
+
+
+</article>
+
+  <section class="comments">
+    <h2>Comments</h2>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+
+    <nav role="navigation" id="pagination">
+
+</nav>
+  </section>
+  
+
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'benjamintanweihao';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://benjamintanweihao.github.io/blog/2013/06/06/pattern-number-3-observer/';
+        var disqus_url = 'http://benjamintanweihao.github.io/blog/2013/06/06/pattern-number-3-observer/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) {return;}
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/all.js#appId=212934732101925&xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
+      script.src = 'https://apis.google.com/js/plusone.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(script, s);
+    })();
+  </script>
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+</body>
+</html>
