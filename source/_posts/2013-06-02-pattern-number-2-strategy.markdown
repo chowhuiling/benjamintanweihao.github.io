@@ -6,7 +6,7 @@ comments: true
 categories: ["Design Pattens", "Strategy"]
 ---
 
-{% img center /images/delegate.png 600 %}
+{% img center /images/delegate.png %}
 (Credits: http://www.indigoexcel.com/)
 
 __Strategy__ is a simple, yet powerful, design pattern to have in your toolbox. It's main power comes from its clever use of delegation. Here's the GoF definition:
