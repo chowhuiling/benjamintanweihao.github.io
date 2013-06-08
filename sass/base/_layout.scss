@@ -262,6 +262,11 @@ header#sidebar h2#subtitle {
     overflow: hidden;
   }
 
+  img#left {
+		float: left;
+		margin-right: 1.5em;
+	}
+
   section#main article {
     width: auto;
     padding-left: 0;
