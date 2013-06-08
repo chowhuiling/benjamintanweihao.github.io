@@ -3,7 +3,7 @@ layout: post
 title: "Why My Next Programming Language is Elixir"
 date: 2013-06-08 18:21
 comments: true
-categories: 
+categories: ["Elixir", "Erlang", "Programming Languages", "Concurrency"]
 ---
 
 {% img left /images/elixir-logo.png %} 
