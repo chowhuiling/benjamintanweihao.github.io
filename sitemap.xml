@@ -2,37 +2,43 @@
 <urlset xmlns='http://www.sitemaps.org/schemas/sitemap/0.9'>
     <url>
         <loc>http://benjamintanweihao.github.io/blog/2013/05/27/my-little-experiment/</loc>
-        <lastmod>2013-06-02T16:37:11+08:00</lastmod>
+        <lastmod>2013-06-08T17:41:42+08:00</lastmod>
     </url>
     <url>
         <loc>
             http://benjamintanweihao.github.io/blog/2013/05/29/pattern-number-1-template-method/
         </loc>
-        <lastmod>2013-06-02T16:37:11+08:00</lastmod>
+        <lastmod>2013-06-08T17:41:42+08:00</lastmod>
     </url>
     <url>
         <loc>http://benjamintanweihao.github.io/blog/2013/06/02/pattern-number-2-strategy/</loc>
-        <lastmod>2013-06-06T23:07:26+08:00</lastmod>
+        <lastmod>2013-06-08T17:41:42+08:00</lastmod>
     </url>
     <url>
         <loc>http://benjamintanweihao.github.io/blog/2013/06/06/pattern-number-3-observer/</loc>
-        <lastmod>2013-06-07T00:45:57+08:00</lastmod>
+        <lastmod>2013-06-08T17:41:42+08:00</lastmod>
+    </url>
+    <url>
+        <loc>
+            http://benjamintanweihao.github.io/blog/2013/06/08/why-my-next-programming-language-is-elixir/
+        </loc>
+        <lastmod>2013-06-08T22:35:23+08:00</lastmod>
     </url>
     <url>
         <loc>http://benjamintanweihao.github.io/about/</loc>
-        <lastmod>2013-06-02T16:37:11+08:00</lastmod>
+        <lastmod>2013-06-08T17:41:42+08:00</lastmod>
     </url>
     <url>
         <loc>http://benjamintanweihao.github.io/blog/archives/</loc>
-        <lastmod>2013-06-07T00:45:57+08:00</lastmod>
+        <lastmod>2013-06-08T22:35:23+08:00</lastmod>
     </url>
     <url>
         <loc>http://benjamintanweihao.github.io/books/</loc>
-        <lastmod>2013-06-02T16:37:11+08:00</lastmod>
+        <lastmod>2013-06-08T17:41:42+08:00</lastmod>
     </url>
     <url>
         <loc>http://benjamintanweihao.github.io/</loc>
-        <lastmod>2013-06-07T00:45:57+08:00</lastmod>
+        <lastmod>2013-06-08T22:35:23+08:00</lastmod>
     </url>
     <url>
         <loc>http://benjamintanweihao.github.io/robots.txt</loc>
