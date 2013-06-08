@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Erlang | benjamin.tan]]></title>
   <link href="http://benjamintanweihao.github.io/blog/categories/erlang/atom.xml" rel="self"/>
   <link href="http://benjamintanweihao.github.io/"/>
-  <updated>2013-06-08T22:38:24+08:00</updated>
+  <updated>2013-06-08T22:44:16+08:00</updated>
   <id>http://benjamintanweihao.github.io/</id>
   <author>
     <name><![CDATA[Benjamin Tan]]></name>
@@ -24,23 +24,23 @@
 
 <p>For those who don&rsquo;t know José, he&rsquo;s from Rails core, founder of <a href="http://plataformatec.com.br/">Plataformatec</a> and author of <a href="http://pragprog.com/book/jvrails2/crafting-rails-4-applications">Crafting Rails 4 Applications</a>.</p>
 
-<p>When I first heard of Elixir, I didn&rsquo;t give much thought to it. During that time, I was trying to wrap my feeble head around <a href="http://clojure.org/">Clojure</a>. Then all of a sudden, I noticed a flurry of activity.</p>
+<p>When I first heard of Elixir, I didn&rsquo;t give much thought to it. During that time, I was trying to wrap my feeble head around <a href="http://clojure.org/">Clojure</a>. Then all of a sudden, I noticed a flurry of activity surrounding this up and coming programming language:</p>
 
 <p><a href="https://peepcode.com/pages/upcoming">PeepCode</a> announced that they were filming an episode with José.</p>
 
 <p><a href="http://oreilly.com/">O'reilly</a> were going to publish an upcoming book and The Pragmatic Bookshelf had just published <a href="http://pragprog.com/book/elixir/programming-elixir">Programming Elixir</a> by Dave Thomas.</p>
 
-<p>Then, there was a <a href="http://joearms.github.io/2013/05/31/a-week-with-elixir.html">piece</a> by Joe Armstrong, inventor of Erlang, who wrote about his 1-week experience with Elixir (He is pretty excited about it).</p>
+<p>Then, there was a blog <a href="http://joearms.github.io/2013/05/31/a-week-with-elixir.html">post</a> by Joe Armstrong, inventor of Erlang, who wrote about his 1-week experience with Elixir. (He is pretty excited about it.)</p>
 
 <h2>Watching the Alpha Geeks</h2>
 
-<p>Tim O'Reilly has been credited for the above phrase through this <a href="http://www.linuxdevcenter.com/pub/a/mac/2002/05/14/oreilly_wwdc_keynote.html">talk</a>. In it, he mentions that he a lot of ideas about what books to publish comes from observing other hackers and &ldquo;alpha geeks&rdquo;:</p>
+<p>Tim O'Reilly has been credited for the above phrase through this <a href="http://www.linuxdevcenter.com/pub/a/mac/2002/05/14/oreilly_wwdc_keynote.html">talk</a>. In it, he mentions that a lot of ideas about what books to publish came from observing other hackers and &ldquo;alpha geeks&rdquo;:</p>
 
 <blockquote><p>This is how we get most of our good ideas at O'Reilly. We look for people who appear to be doing magic, and ask them how they do it.</p>
 
 <p>There are always people in any field who are the most clued in to the deep trends, who seem to be playing with all the coolest stuff, and seem to have their finger in everything before most people even know about it.</p></blockquote>
 
-<p>Joe, José and Dave certain qualify as &ldquo;alpha geeks&rdquo;, and their investment in Elixir is definitely noteworthy.</p>
+<p>Joe, José and Dave certain qualify as &ldquo;alpha geeks&rdquo;, and their interest/investment in Elixir is definitely noteworthy.</p>
 
 <h2>Elixir |> The Love-child of Ruby and Erlang |> Accessible Concurrency</h2>
 
