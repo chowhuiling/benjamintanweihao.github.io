@@ -12,23 +12,23 @@ categories: ["Elixir", "Erlang", "Programming Languages", "Concurrency"]
 
 For those who don't know José, he's from Rails core, founder of [Plataformatec](http://plataformatec.com.br/) and author of [Crafting Rails 4 Applications](http://pragprog.com/book/jvrails2/crafting-rails-4-applications).
 
-When I first heard of Elixir, I didn't give much thought to it. During that time, I was trying to wrap my feeble head around [Clojure](http://clojure.org/). Then all of a sudden, I noticed a flurry of activity. 
+When I first heard of Elixir, I didn't give much thought to it. During that time, I was trying to wrap my feeble head around [Clojure](http://clojure.org/). Then all of a sudden, I noticed a flurry of activity surrounding this up and coming programming language:
 
 [PeepCode](https://peepcode.com/pages/upcoming) announced that they were filming an episode with José.
 
 [O'reilly](http://oreilly.com/) were going to publish an upcoming book and The Pragmatic Bookshelf had just published [Programming Elixir](http://pragprog.com/book/elixir/programming-elixir) by Dave Thomas. 
 
-Then, there was a [piece](http://joearms.github.io/2013/05/31/a-week-with-elixir.html) by Joe Armstrong, inventor of Erlang, who wrote about his 1-week experience with Elixir (He is pretty excited about it).
+Then, there was a blog [post](http://joearms.github.io/2013/05/31/a-week-with-elixir.html) by Joe Armstrong, inventor of Erlang, who wrote about his 1-week experience with Elixir. (He is pretty excited about it.)
 
 ##Watching the Alpha Geeks
 
-Tim O'Reilly has been credited for the above phrase through this [talk](http://www.linuxdevcenter.com/pub/a/mac/2002/05/14/oreilly_wwdc_keynote.html). In it, he mentions that he a lot of ideas about what books to publish comes from observing other hackers and "alpha geeks":
+Tim O'Reilly has been credited for the above phrase through this [talk](http://www.linuxdevcenter.com/pub/a/mac/2002/05/14/oreilly_wwdc_keynote.html). In it, he mentions that a lot of ideas about what books to publish came from observing other hackers and "alpha geeks":
 
 > This is how we get most of our good ideas at O'Reilly. We look for people who appear to be doing magic, and ask them how they do it.  
 
 > There are always people in any field who are the most clued in to the deep trends, who seem to be playing with all the coolest stuff, and seem to have their finger in everything before most people even know about it.
 
-Joe, José and Dave certain qualify as "alpha geeks", and their investment in Elixir is definitely noteworthy.
+Joe, José and Dave certain qualify as "alpha geeks", and their interest/investment in Elixir is definitely noteworthy.
 
 ##Elixir |> The Love-child of Ruby and Erlang |> Accessible Concurrency
 
