@@ -1,0 +1,360 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Pattern #4 - Adapter - benjamin.tan</title>
+  <meta name="author" content="Benjamin Tan">
+
+  
+  <meta name="description" content="Tweet Pattern #4 - Adapter Jun 11th, 2013 | Comments (Adapters &ndash; Doing it wrong.) The Adapter pattern is one of those patterns that requires &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://benjamintanweihao.github.io/blog/2013/06/11/pattern-number-4-adapter/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="benjamin.tan" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-41273068-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body >
+  <header role="banner" id="sidebar">
+    <!-- Logo -->
+<aside id="logo" class="clearfix">
+  <div class="clearfix">
+    <a href="/">benjamin.tan</a>
+  </div>
+</aside>
+
+<ul id="menu">
+
+  <li class="title">
+    <h1 id="title"><a href="/">benjamin.tan</a></h1>
+  </li>
+
+
+  <li class="subtitle">
+    <h2 id="subtitle">learning & writings.</h2>
+  </li>
+
+  <li class="link">
+    <a href="/about/">about</a>
+  </li>
+  <li class="link">
+    <a href="/books/">my books</a>
+  </li>
+
+  <li class="link">
+    <a href="http://twitter.com/bentanweihao/">twitter</a>
+  </li>
+
+
+  <li class="link">
+    <a href="http://github.com/benjamintanweihao/">github</a>
+  </li>
+
+  <li class="link rss">
+    <a href="/atom.xml">rss feed</a>
+  </li>
+</ul>
+
+
+
+  </header>
+  <section id="main">
+    <article class="post">
+  <div class="sharing-box">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://benjamintanweihao.github.io" data-via="bentanweihao" data-counturl="http://benjamintanweihao.github.io" data-size="large">Tweet</a>
+  
+  
+	<div class="g-plusone" data-size="medium" data-href="http://benjamintanweihao.github.io"></div>
+  
+  
+	<div class="fb-like" data-send="true" data-width="450" data-show-faces="false" data-href="http://benjamintanweihao.github.io"></div>
+  
+</div>
+
+  
+  <header>
+    
+      <h2 class="entry-title">Pattern #4 - Adapter</h2>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-06-11T23:43:00+08:00" pubdate data-updated="true">Jun 11<span>th</span>, 2013</time>
+        
+         | <a href="#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+<p><img src="/images/adapter.jpg"></p>
+
+<p>(Adapters &ndash; Doing it wrong.)</p>
+
+<p>The <strong>Adapter</strong> pattern is one of those patterns that requires little imagination to figure out what they do.</p>
+
+<p>First off, let&rsquo;s see the definition courtesy of GoF:</p>
+
+<blockquote><p>Convert the interface of a class into another interface clients expect.</p>
+
+<p>Adapter lets classes work together that couldn&rsquo;t otherwise because of incompatible interfaces.</p></blockquote>
+
+<p>Let&rsquo;s see some code:</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">class</span> <span class="nc">Client</span>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="n">target</span><span class="p">)</span>
+</span><span class='line'>    <span class="vi">@target</span> <span class="o">=</span> <span class="n">adapter</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">do_work</span>
+</span><span class='line'>    <span class="c1"># do hard work …</span>
+</span><span class='line'>    <span class="vi">@target</span><span class="o">.</span><span class="n">complex_operation</span>
+</span><span class='line'>    <span class="c1"># ...</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">class</span> <span class="nc">Target</span>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">complex_operation</span>
+</span><span class='line'>    <span class="c1"># la la la ...</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Here&rsquo;s the story:</p>
+
+<p>Normally the <code>Client</code> would be expecting that the <code>target</code> be able to <code>do_work</code> without a hitch:</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">client</span> <span class="o">=</span> <span class="no">Client</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="no">Target</span><span class="o">.</span><span class="n">new</span><span class="p">)</span>
+</span><span class='line'><span class="n">client</span><span class="o">.</span><span class="n">do_work</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>One fine day, your boss comes over, and shows you this class, and tells you that <code>SomeOtherTarget</code> must work with <code>Client</code>:</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">class</span> <span class="nc">SomeOtherTarget</span>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">trivial_operation</span>
+</span><span class='line'>    <span class="c1"># oh no! different method name…</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Obviously, this won&rsquo;t work, because <code>SomeOtherTarget</code> does not have the <code>complex_operation</code> method that the <code>Client</code> expects:</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">client</span> <span class="o">=</span> <span class="no">Client</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="no">SomeOtherTarget</span><span class="o">.</span><span class="n">new</span><span class="p">)</span>
+</span><span class='line'><span class="n">client</span><span class="o">.</span><span class="n">do_work</span> <span class="c1"># DOES NOT WORK</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>Plugging in the Adapter</h2>
+
+<p>We need some way to bridge this difference in interfaces. How do we somehow connect <code>Client</code>&rsquo;s expectation of a <code>complex_operation</code> method with <code>SomeOtherTarget</code>&rsquo;s <code>trivial_operation</code> ?</p>
+
+<p>Here&rsquo;s the <code>Adapter</code> class to the rescue:</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">class</span> <span class="nc">Adapter</span>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="n">adaptee</span><span class="p">)</span>
+</span><span class='line'>    <span class="vi">@adaptee</span> <span class="o">=</span> <span class="n">adaptee</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">complex_operation</span>
+</span><span class='line'>    <span class="vi">@adaptee</span><span class="o">.</span><span class="n">trivial_operation</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>And with this bit of indirection, <code>Client</code> can happily use <code>SomeOtherTarget</code>:</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">client</span> <span class="o">=</span> <span class="no">Client</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="no">Adapter</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="no">SomeOtherTarget</span><span class="o">.</span><span class="n">new</span><span class="p">))</span>
+</span><span class='line'><span class="n">client</span><span class="o">.</span><span class="n">do_work</span> <span class="c1"># DOES NOT WORK</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Notice how now the <code>Adapter</code> object takes the place of the <code>@target</code> instance variable of <code>Client</code>. The <code>Adapter</code> object now becomes the middleman/wrapper/translator. This is composition at work!</p>
+
+<h2>2 Flavors of Adapters: Object &amp; Class</h2>
+
+<p>Now, if you check out the <a href="http://en.wikipedia.org/wiki/Adapter_pattern">Wikipedia entry</a> you will see the 2 kinds of Adapters &ndash; <strong>Class</strong> and <strong>Object</strong> adapters.</p>
+
+<h3>Object Adapter</h3>
+
+<p><img src="/images/object_adapter.png">
+(Credits: Wikipedia)</p>
+
+<h3>Class Adapter</h3>
+
+<p><img src="/images/class_adapter.png">
+(Credits: Wikipedia)</p>
+
+<h3>So what&rsquo;s the difference?</h3>
+
+<p>I don&rsquo;t know about you, but when I first saw both UML diagrams, my eyes glazed. The key here to to focus on the differences.</p>
+
+<p>The <strong>Object Adapter</strong> uses <em>composition</em>. Notice that the <code>Adapter</code> has an <code>+adaptee</code> field. The <code>Adapter</code> class has to use the <code>Adaptee</code> class, and that&rsquo;s essentially <a href="http://en.wikipedia.org/wiki/Composition_over_inheritance"><em>composition</em></a>.</p>
+
+<p>The <strong>Class Adapter</strong> uses <em>multiple inheritance</em> (that&rsquo;s the hollow triangular arrows pointing upwards). Frankly, I don&rsquo;t know too much about multiple inheritance, and in general, unless you&rsquo;re a C++ programmer (I&rsquo;m sorry), you probably won&rsquo;t need this.</p>
+
+<p>Conclusion: Stick to the Object Adapter.</p>
+
+<p>In the next post, I will look at the <strong>Proxy</strong> pattern. Thanks for reading!</p>
+
+<h3>References</h3>
+
+<p>Olsen, R. (2008) Design patterns in Ruby. Upper Saddle River, NJ: Addison-Wesley, p.163-174.</p>
+
+
+
+</article>
+
+  <section class="comments">
+    <h2>Comments</h2>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+
+    <nav role="navigation" id="pagination">
+
+</nav>
+  </section>
+  
+
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'benjamintanweihao';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://benjamintanweihao.github.io/blog/2013/06/11/pattern-number-4-adapter/';
+        var disqus_url = 'http://benjamintanweihao.github.io/blog/2013/06/11/pattern-number-4-adapter/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) {return;}
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/all.js#appId=212934732101925&xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
+      script.src = 'https://apis.google.com/js/plusone.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(script, s);
+    })();
+  </script>
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+</body>
+</html>

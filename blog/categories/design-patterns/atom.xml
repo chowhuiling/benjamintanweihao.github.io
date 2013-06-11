@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Design Patterns | benjamin.tan]]></title>
   <link href="http://benjamintanweihao.github.io/blog/categories/design-patterns/atom.xml" rel="self"/>
   <link href="http://benjamintanweihao.github.io/"/>
-  <updated>2013-06-08T22:44:16+08:00</updated>
+  <updated>2013-06-12T01:36:55+08:00</updated>
   <id>http://benjamintanweihao.github.io/</id>
   <author>
     <name><![CDATA[Benjamin Tan]]></name>
@@ -12,6 +12,197 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Pattern #4 - Adapter]]></title>
+    <link href="http://benjamintanweihao.github.io/blog/2013/06/11/pattern-number-4-adapter/"/>
+    <updated>2013-06-11T23:43:00+08:00</updated>
+    <id>http://benjamintanweihao.github.io/blog/2013/06/11/pattern-number-4-adapter</id>
+    <content type="html"><![CDATA[<p><img src="/images/adapter.jpg"></p>
+
+<p>(Adapters &ndash; Doing it wrong.)</p>
+
+<p>The <strong>Adapter</strong> pattern is one of those patterns that requires little imagination to figure out what they do.</p>
+
+<p>First off, let&rsquo;s see the definition courtesy of GoF:</p>
+
+<blockquote><p>Convert the interface of a class into another interface clients expect.</p>
+
+<p>Adapter lets classes work together that couldn&rsquo;t otherwise because of incompatible interfaces.</p></blockquote>
+
+<p>Let&rsquo;s see some code:</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">class</span> <span class="nc">Client</span>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="n">target</span><span class="p">)</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;pre&gt;&lt;code&gt;@target = adapter</span>
+</span><span class='line'><span class="sr">&lt;/</span><span class="n">code</span><span class="o">&gt;&lt;</span><span class="sr">/pre&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;p&gt;  end&lt;/</span><span class="nb">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span>  <span class="k">def</span> <span class="nf">do_work</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;pre&gt;&lt;code&gt;# do hard work …</span>
+</span><span class='line'><span class="sr">@target.complex_operation</span>
+</span><span class='line'><span class="sr"># ...</span>
+</span><span class='line'><span class="sr">&lt;/</span><span class="n">code</span><span class="o">&gt;&lt;</span><span class="sr">/pre&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;p&gt;  end</span>
+</span><span class='line'><span class="sr">end&lt;/</span><span class="nb">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span><span class="k">class</span> <span class="nc">Target</span>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">complex_operation</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;pre&gt;&lt;code&gt;# la la la ...</span>
+</span><span class='line'><span class="sr">&lt;/</span><span class="n">code</span><span class="o">&gt;&lt;</span><span class="sr">/pre&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;p&gt;  end</span>
+</span><span class='line'><span class="sr">end</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>Here&rsquo;s the story:</p>
+
+<p>Normally the <code>Client</code> would be expecting that the <code>target</code> be able to <code>do_work</code> without a hitch:</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">client</span> <span class="o">=</span> <span class="no">Client</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="no">Target</span><span class="o">.</span><span class="n">new</span><span class="p">)</span>
+</span><span class='line'><span class="n">client</span><span class="o">.</span><span class="n">do_work</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>One fine day, your boss comes over, and shows you this class, and tells you that <code>SomeOtherTarget</code> must work with <code>Client</code>:</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">class</span> <span class="nc">SomeOtherTarget</span>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">trivial_operation</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;pre&gt;&lt;code&gt;# oh no! different method name…</span>
+</span><span class='line'><span class="sr">&lt;/</span><span class="n">code</span><span class="o">&gt;&lt;</span><span class="sr">/pre&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;p&gt;  end</span>
+</span><span class='line'><span class="sr">end</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>Obviously, this won&rsquo;t work, because <code>SomeOtherTarget</code> does not have the <code>complex_operation</code> method that the <code>Client</code> expects:</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">client</span> <span class="o">=</span> <span class="no">Client</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="no">SomeOtherTarget</span><span class="o">.</span><span class="n">new</span><span class="p">)</span>
+</span><span class='line'><span class="n">client</span><span class="o">.</span><span class="n">do_work</span> <span class="c1"># DOES NOT WORK</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<h2>Plugging in the Adapter</h2>
+
+<p>We need some way to bridge this difference in interfaces. How do we somehow connect <code>Client</code>&rsquo;s expectation of a <code>complex_operation</code> method with <code>SomeOtherTarget</code>&rsquo;s <code>trivial_operation</code> ?</p>
+
+<p>Here&rsquo;s the <code>Adapter</code> class to the rescue:</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">class</span> <span class="nc">Adapter</span>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="n">adaptee</span><span class="p">)</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;pre&gt;&lt;code&gt;@adaptee = adaptee</span>
+</span><span class='line'><span class="sr">&lt;/</span><span class="n">code</span><span class="o">&gt;&lt;</span><span class="sr">/pre&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;p&gt;  end&lt;/</span><span class="nb">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span>  <span class="k">def</span> <span class="nf">complex_operation</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;pre&gt;&lt;code&gt;@adaptee.trivial_operation</span>
+</span><span class='line'><span class="sr">&lt;/</span><span class="n">code</span><span class="o">&gt;&lt;</span><span class="sr">/pre&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;p&gt;  end</span>
+</span><span class='line'><span class="sr">end</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>And with this bit of indirection, <code>Client</code> can happily use <code>SomeOtherTarget</code>:</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">client</span> <span class="o">=</span> <span class="no">Client</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="no">Adapter</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="no">SomeOtherTarget</span><span class="o">.</span><span class="n">new</span><span class="p">))</span>
+</span><span class='line'><span class="n">client</span><span class="o">.</span><span class="n">do_work</span> <span class="c1"># DOES NOT WORK</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>Notice how now the <code>Adapter</code> object takes the place of the <code>@target</code> instance variable of <code>Client</code>. The <code>Adapter</code> object now becomes the middleman/wrapper/translator. This is composition at work!</p>
+
+<h2>2 Flavors of Adapters: Object &amp; Class</h2>
+
+<p>Now, if you check out the <a href="http://en.wikipedia.org/wiki/Adapter_pattern">Wikipedia entry</a> you will see the 2 kinds of Adapters &ndash; <strong>Class</strong> and <strong>Object</strong> adapters.</p>
+
+<h3>Object Adapter</h3>
+
+<p><img src="/images/object_adapter.png">
+(Credits: Wikipedia)</p>
+
+<h3>Class Adapter</h3>
+
+<p><img src="/images/class_adapter.png">
+(Credits: Wikipedia)</p>
+
+<h3>So what&rsquo;s the difference?</h3>
+
+<p>I don&rsquo;t know about you, but when I first saw both UML diagrams, my eyes glazed. The key here to to focus on the differences.</p>
+
+<p>The <strong>Object Adapter</strong> uses <em>composition</em>. Notice that the <code>Adapter</code> has an <code>+adaptee</code> field. The <code>Adapter</code> class has to use the <code>Adaptee</code> class, and that&rsquo;s essentially <a href="http://en.wikipedia.org/wiki/Composition_over_inheritance"><em>composition</em></a>.</p>
+
+<p>The <strong>Class Adapter</strong> uses <em>multiple inheritance</em> (that&rsquo;s the hollow triangular arrows pointing upwards). Frankly, I don&rsquo;t know too much about multiple inheritance, and in general, unless you&rsquo;re a C++ programmer (I&rsquo;m sorry), you probably won&rsquo;t need this.</p>
+
+<p>Conclusion: Stick to the Object Adapter.</p>
+
+<p>In the next post, I will look at the <strong>Proxy</strong> pattern. Thanks for reading!</p>
+
+<h3>References</h3>
+
+<p>Olsen, R. (2008) Design patterns in Ruby. Upper Saddle River, NJ: Addison-Wesley, p.163-174.</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Pattern #3 - Observer]]></title>
