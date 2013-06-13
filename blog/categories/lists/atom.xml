@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Lists | benjamin.tan]]></title>
   <link href="http://benjamintanweihao.github.io/blog/categories/lists/atom.xml" rel="self"/>
   <link href="http://benjamintanweihao.github.io/"/>
-  <updated>2013-06-14T01:39:43+08:00</updated>
+  <updated>2013-06-14T01:44:31+08:00</updated>
   <id>http://benjamintanweihao.github.io/</id>
   <author>
     <name><![CDATA[Benjamin Tan]]></name>
@@ -83,6 +83,9 @@
 <p>Elixir has some very sweet pattern matching capabilities. The most important thing to know about lists is probably this:</p>
 
 <blockquote><p>A non-empty list consists of a head and a tail. The tail is also a list.</p></blockquote>
+
+<p><img src="/images/listmonster.png">
+(Credits: <a href="http://learnyouahaskell.com/">http://learnyouahaskell.com/</a>)</p>
 
 <h2>Implementing empty?</h2>
 
