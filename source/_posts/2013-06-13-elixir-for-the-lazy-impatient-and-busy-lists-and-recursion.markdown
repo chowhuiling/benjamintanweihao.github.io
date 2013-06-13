@@ -60,6 +60,9 @@ Elixir has some very sweet pattern matching capabilities. The most important thi
 
 >A non-empty list consists of a head and a tail. The tail is also a list.
 
+{% img /images/listmonster.png %}
+(Credits: http://learnyouahaskell.com/)
+
 ##Implementing empty?
 
 `empty?/1` returns true if a list is empty, false otherwise:
