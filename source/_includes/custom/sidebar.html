@@ -16,6 +16,27 @@
     <h2 id="subtitle">{{ site.subtitle }}</h2>
   </li>
 {% endif %}
+{% if site.coderwall_user %}
+<section id="coderwall_badges" style="margin:0 0 20px 0;"></section>
+<script type="text/javascript">
+	$(document).ready(function(){
+		jQuery.getJSON("https://coderwall.com/{{site.coderwall_user}}.json?callback=?", function(data){
+			for(var i = 0; i < data.data.badges.length ; i++){
+				var badge = data.data.badges[i];
+				var badge_tag;
+				// if ((i+1) % 5 == 0) {
+					// badge_tag = $("<img /><br/>");
+				// } else {
+					badge_tag = $("<img />");
+				//}
+				badge_tag.attr("src",badge.badge);
+				badge_tag.css("width","10%");
+				$("#coderwall_badges").append(badge_tag);
+			}
+		});
+	});
+</script>
+{% endif %}
   <li class="link">
     <a href="/about/">about</a>
   </li>
@@ -45,3 +66,4 @@
   </fieldset>
 </form>
 {% endif %}
+
