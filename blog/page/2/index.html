@@ -9,7 +9,7 @@
   <meta name="author" content="Benjamin Tan">
 
   
-  <meta name="description" content="Tweet Pattern #1: Template Method May 29th, 2013 | Comments This is one of the simplest design patterns. The GoF book has the most concise &hellip;">
+  <meta name="description" content="Tweet Pattern #2: Strategy Jun 2nd, 2013 | Comments (Credits: http://www.indigoexcel.com/) Strategy is a simple, yet powerful, design pattern to &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -114,6 +114,214 @@
   </header>
   <section id="main">
       
+  
+  
+    <article class="post">
+      <div class="sharing-box">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://benjamintanweihao.github.io/blog/2013/06/02/pattern-number-2-strategy/" data-via="bentanweihao" data-counturl="http://benjamintanweihao.github.io/blog/2013/06/02/pattern-number-2-strategy/" data-size="large">Tweet</a>
+  
+  
+	<div class="g-plusone" data-size="medium" data-href="http://benjamintanweihao.github.io/blog/2013/06/02/pattern-number-2-strategy/"></div>
+  
+  
+	<div class="fb-like" data-send="true" data-width="450" data-show-faces="false" data-href="http://benjamintanweihao.github.io/blog/2013/06/02/pattern-number-2-strategy/"></div>
+  
+</div>
+
+      
+  <header>
+    
+      <h2 class="entry-title">
+        
+        <a href="/blog/2013/06/02/pattern-number-2-strategy/">Pattern #2: Strategy</a>
+        
+      </h2>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-06-02T13:48:00+08:00" pubdate data-updated="true">Jun 2<span>nd</span>, 2013</time>
+        
+         | <a href="/blog/2013/06/02/pattern-number-2-strategy/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <p><img class="center" src="/images/delegate.png">
+(Credits: <a href="http://www.indigoexcel.com/">http://www.indigoexcel.com/</a>)</p>
+
+<p><strong>Strategy</strong> is a simple, yet powerful, design pattern to have in your toolbox. It&rsquo;s main power comes from its clever use of delegation. Here&rsquo;s the GoF definition:</p>
+
+<blockquote><p>Define a family of algorithms, encapsulate each one, and make them interchangeable.
+Strategy lets the algorithm vary independently from client that use it.</p></blockquote>
+
+<p>Let&rsquo;s assume the following:</p>
+
+<p>You have just written an backup utility that is beloved by sysadmins all over the world.</p>
+
+<p>So far, your most requested feature is to support multiple forms of notifications. Currently, the user is only notified via standard output (i.e. Log file).</p>
+
+<p>You want to support multiple notifications, but yet, you are too <em>busy/lazy</em> to support the multitudes of notification methods (e.g.: Twitter/IRC/XMPP/etc).</p>
+
+<p>So how? Here&rsquo;s where <strong>Strategy</strong> comes to the rescue.</p>
+
+<p>In this example, there are 3 classes:</p>
+
+<ol>
+<li><p><code>Context</code>: Think of this as the client class. This is the class that is going to make use of the pattern. In the previous example, this could be the <code>BackupUtility</code> class.</p></li>
+<li><p><code>EmailNotifier</code>/<code>TwitterNotifier</code>: These classes represent the different notifiers we want to use.</p></li>
+</ol>
+
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">class</span> <span class="nc">Context</span>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="n">notifier</span><span class="p">)</span>
+</span><span class='line'>    <span class="vi">@notifier</span> <span class="o">=</span> <span class="n">notifier</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">notify</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
+</span><span class='line'>    <span class="vi">@notifier</span><span class="o">.</span><span class="n">notify</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">class</span> <span class="nc">EmailNotifier</span>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="n">opts</span><span class="p">)</span>
+</span><span class='line'>    <span class="vi">@user_name</span>   <span class="o">=</span> <span class="n">opts</span><span class="o">[</span><span class="ss">:user_name</span><span class="o">]</span>
+</span><span class='line'>    <span class="vi">@password</span>    <span class="o">=</span> <span class="n">opts</span><span class="o">[</span><span class="ss">:password</span><span class="o">]</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">notify</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
+</span><span class='line'>    <span class="no">GoogleMailer</span><span class="o">.</span><span class="n">new</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">class</span> <span class="nc">TwitterNotifier</span>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="n">opts</span><span class="p">)</span>
+</span><span class='line'>    <span class="vi">@handle</span> <span class="o">=</span> <span class="n">opts</span><span class="o">[</span><span class="ss">:handle</span><span class="o">]</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">notify</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
+</span><span class='line'>    <span class="ss">Twitter</span><span class="p">:</span><span class="ss">:Client</span><span class="o">.</span><span class="n">new</span><span class="o">.</span><span class="n">tweet</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">#{</span><span class="n">message</span><span class="si">}</span><span class="s2"> </span><span class="si">#{</span><span class="vi">@handle</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>So now, if we want to send notifications via email:</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">context</span> <span class="o">=</span> <span class="no">Context</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="no">EmailNotifier</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="ss">username</span><span class="p">:</span> <span class="s1">&#39;ben@gmail.com&#39;</span><span class="p">,</span> <span class="ss">password</span><span class="p">:</span> <span class="s1">&#39;secretlol&#39;</span><span class="p">))</span>
+</span><span class='line'><span class="n">context</span><span class="o">.</span><span class="n">notify</span><span class="p">(</span><span class="s1">&#39;Backup completed successfully!&#39;</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>And if we want Twitter notifications instead:</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">context</span><span class="o">.</span><span class="n">notifier</span> <span class="o">=</span> <span class="no">TwitterNotifier</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="ss">handle</span><span class="p">:</span> <span class="s1">&#39;@bentanweihao&#39;</span><span class="p">)</span>
+</span><span class='line'><span class="n">context</span><span class="o">.</span><span class="n">notify</span><span class="p">(</span><span class="s1">&#39;Catastrophic disaster! Prepare for a long night.&#39;</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Now, the beautiful thing about the Strategy is that anyone can write custom notifications.</p>
+
+<p>All the implementation has to do is to implement the <code>notify</code> method, and then set the <code>notifier</code> attribute of the <code>Context</code> class to the new notifier.</p>
+
+<h2>Delegate, Delegate, Delegate</h2>
+
+<p>Delegation is at the heart of the strategy pattern. Most of its magic derives from the deceptively simple <code>notify</code> method in the <code>Context</code> class:</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">def</span> <span class="nf">notify</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
+</span><span class='line'>  <span class="vi">@notifier</span><span class="o">.</span><span class="n">notify</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>The <code>Context</code> class doesn&rsquo;t care how the <code>notifier</code> is implemented. It just calls the <code>notify</code> method with the correct set of parameters.</p>
+
+<h2>Open/Close Principle</h2>
+
+<p><strong>Strategy</strong> is an example of the <a href="http://en.wikipedia.org/wiki/Open/closed_principle">Open/Closed principle</a>.</p>
+
+<p>The essence of it is:</p>
+
+<blockquote><p>Software entities (classes, modules, functions, etc.) should be open for extension, but closed for modification.</p></blockquote>
+
+<p>Imagine for a moment that our <code>Context</code> class is compiled and distributed only in binary form. No one else can modify the code except (closed of modification) yourself. How can you then allow others to create extensions to your code?</p>
+
+<p>If you have understood <strong>Strategy</strong>, this would be a non-issue since you just have to implement the correct interface, assign the correct attributes and you&rsquo;ll be all set.</p>
+
+<h2>Strategy vs. Template Method</h2>
+
+<ul>
+<li><p>Unlike <strong>Template method</strong>, <strong>Strategy</strong> doesn&rsquo;t require inheritance.</p></li>
+<li><p><strong>Template method</strong> modifies <em>part</em> of the algorithm, while <strong>Strategy</strong> swaps out the entire algorithm with a new one.</p></li>
+</ul>
+
+
+<p>In the next post, I&rsquo;ll cover an extremely useful and common pattern &ndash; <strong>Observer</strong>.</p>
+
+<p>Thanks for reading!</p>
+
+<h3>References</h3>
+
+<p>Olsen, R. (2008) Design patterns in Ruby. Upper Saddle River, NJ: Addison-Wesley, p.77-93.</p>
+
+<p>Gamma, E. (1995) Design patterns. Reading, Mass.: Addison-Wesley, p.315-323.</p>
+
+  
+  
+
+
+    </article>
   
   
     <article class="post">

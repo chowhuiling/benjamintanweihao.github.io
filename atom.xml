@@ -4,7 +4,7 @@
   <title><![CDATA[benjamin.tan]]></title>
   <link href="http://benjamintanweihao.github.io/atom.xml" rel="self"/>
   <link href="http://benjamintanweihao.github.io/"/>
-  <updated>2013-06-15T15:27:39+08:00</updated>
+  <updated>2013-06-21T22:17:51+08:00</updated>
   <id>http://benjamintanweihao.github.io/</id>
   <author>
     <name><![CDATA[Benjamin Tan]]></name>
@@ -12,6 +12,73 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Meeting Elixir with PeepCode: A Review]]></title>
+    <link href="http://benjamintanweihao.github.io/blog/2013/06/21/meeting-elixir-with-peepcode-a-review/"/>
+    <updated>2013-06-21T21:24:00+08:00</updated>
+    <id>http://benjamintanweihao.github.io/blog/2013/06/21/meeting-elixir-with-peepcode-a-review</id>
+    <content type="html"><![CDATA[<p><img src="http://benjamintanweihao.github.io/images/peepcode_elixir.png"></p>
+
+<h2>Disclaimer</h2>
+
+<p>I&rsquo;m not affiliated with PeepCode in anyway &ndash; I just love their products.</p>
+
+<h2>TL;DR</h2>
+
+<p>Get this now. It is about the price of movie ticket (at least in Singapore), for a <a href="https://peepcode.com/products/elixir">limited time</a>!</p>
+
+<h2>What I loved about it?</h2>
+
+<p>If you are not familiar with PeepCode (you are really missing out!), go <a href="https://peepcode.com/">here</a> first, but please come back after that. I&rsquo;ve been a longtime customer of theirs, and when <strong>Meet Elixir</strong> was released just a few days ago, I was probably one of the first to download the screencast.</p>
+
+<h3>Caveat emptor</h3>
+
+<p>You probably won&rsquo;t learn Elixir from this screencast alone. But then, that isn&rsquo;t the point of this particular screencast.</p>
+
+<p>The aim of this screencast is to give a whirlwind tour of Elixir and its features by solving a real-world problem, with none other than the best person to do it &ndash; José Valim.</p>
+
+<h3>José&rsquo;s awesome …</h3>
+
+<p>The screencast is a mix between a Play-by-play (developers are given a task and we get to see how they solve it with tools of their choice, along with their thoughts on their approach) and an introductory video.</p>
+
+<p>Around 10 minutes in, you&rsquo;ll realized that José is an amazing teacher. Concepts are explain in a very clear and crisp fashion. The fact that Geoffrey takes on the role as the newbie and asks newbie questions (I hope he doesn&rsquo;t hold this against me) is a very nice touch, because I probably would have stumbled on those too, and some I would have missed.</p>
+
+<p>What is more amazing to see, however, is how the code seems to fly across the screen when he attempts to solve the task, all the while demonstrating varying techniques and idioms and dispensing pearls of wisdom with respect Elixir&rsquo;s design.</p>
+
+<h3>But José&rsquo;s human too</h3>
+
+<p>Another nice thing about this video is when Jose stumbles onto bugs, syntax errors and the like, and how he overcomes them. Even <em>he</em> has to consult the documentation!</p>
+
+<h2>What I would have wanted to see more of?</h2>
+
+<p>I would have wanted to see how concurrency could solve the task in a much more efficient way. Unfortunately, because the files were so few, the effect wasn&rsquo;t there.</p>
+
+<p>The original video I downloaded had tiny hiccups, where the speech was cut off after then end of every chapter. I&rsquo;m sure they have got it fixed by now.</p>
+
+<h2>Who should get this?</h2>
+
+<p>If you are reading this, you probably should just get it. The screencast nicely captures all the excitement that is surrounding Elixir, and the very cool features it offers. Best of all, you get to see how he recovers from these bugs and the ever so temporary brain blocks and solves the task beautifully.</p>
+
+<h2>Who shouldn&rsquo;t get this?</h2>
+
+<p>1) José Valim</p>
+
+<p>2) Joe Armstrong</p>
+
+<p>3) Rich Hickey</p>
+
+<h3>Conclusion</h3>
+
+<p>This is easily one of my favorite PeepCode screencasts &ndash; It was well worth the wait.</p>
+
+<p>I would very much love to see a follow-up on Elixir, with a deeper dive into its concurrency features.</p>
+
+<p>All things considered, for $9, this is almost a no-brainer.</p>
+
+<p><em>Go learn you an Elixir for Great Good!</em></p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Elixir for the Lazy, Impatient and Busy: Part 1 |> Lists and Recursion]]></title>
